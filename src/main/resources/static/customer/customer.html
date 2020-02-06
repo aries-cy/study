@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://www.17sucai.com/preview/776331/2019-07-31/pag/index.html -->
+<html><head>
+    <meta content="text/html; charset=UTF-8" charset="utf-8">
+
+    <title>客户</title>
+    <link rel="stylesheet"  href="MyPaging.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<!--    <script src="./jquery.min(1).js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .main {
+            margin: 0 auto;
+            padding: 50px 0;
+            width: 1000px;
+            min-height: 1000px;
+        }
+        table {
+            margin-bottom: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            border: none;
+        }
+        table th, table td {
+            padding: 5px 10px;
+            border-color: #999;
+        }
+    </style>
+
+</head>
+<body style="">
+
+<div class="main">
+    姓名：<input id="name" name="name"/> <button id="search" onclick="search()">搜索</button>
+    <button data-toggle="modal" data-target="#addModal">新增</button>
+    <table border="">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>地址</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+
+        </tbody>
+    </table>
+
+    <div class="box2">
+        <div class="_my-paging-box">
+
+        </div>
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改
+                </h4>
+            </div>
+            <input id="modal_id" type="hidden">
+            <div class="modal-body">
+                姓名：<input id="modal_name"/>
+            </div>
+            <div class="modal-body">
+                性别：<input id="modal_sex"/>
+            </div>
+            <div class="modal-body">
+                年龄：<input id="modal_age"/>
+            </div>
+            <div class="modal-body">
+                电话：<input id="modal_phone"/>
+            </div>
+            <div class="modal-body">
+                地址：<input id="modal_address"/>
+            </div>
+            <div class="modal-body">
+                备注：<input id="modal_remark"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" onclick="updateCustomer()">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addModalLabel">
+                    新增
+                </h4>
+            </div>
+            <div class="modal-body">
+                姓名：<input id="add_modal_name"/>
+            </div>
+            <div class="modal-body">
+                性别：<input id="add_modal_sex"/>
+            </div>
+            <div class="modal-body">
+                年龄：<input id="add_modal_age"/>
+            </div>
+            <div class="modal-body">
+                电话：<input id="add_modal_phone"/>
+            </div>
+            <div class="modal-body">
+                地址：<input id="add_modal_address"/>
+            </div>
+            <div class="modal-body">
+                备注：<input id="add_modal_remark"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" onclick="addCustomer()">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script src="MyPaging.js"></script>
+<script src="script.js"></script>
+
+
+</body></html>

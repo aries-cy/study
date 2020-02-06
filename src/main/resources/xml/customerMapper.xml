@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cy.study.mapper.CustomerMapper">
+
+    <select id="queryCustomerPageList" resultType="com.cy.study.model.Customer">
+        SELECT * FROM customer
+        where 1=1
+        <if test="requestModel.sex != null and requestModel.sex != '' ">
+            and sex = #{requestModel.sex}
+        </if>
+        <if test="requestModel.name != null and requestModel.name != '' ">
+            and name LIKE concat('%',#{requestModel.name},'%')
+        </if>
+        <if test="requestModel.phoneNum != null and requestModel.phoneNum != '' ">
+            and phoneNum LIKE concat('%',#{requestModel.phoneNum},'%')
+        </if>
+        order by id desc
+    </select>
+
+    <select id="queryCustomerById" resultType="com.cy.study.model.Customer">
+        select * from  customer where id =#{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from customer where  id = #{id}
+    </delete>
+
+
+</mapper>
