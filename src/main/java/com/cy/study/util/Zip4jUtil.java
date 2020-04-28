@@ -27,7 +27,7 @@ public class Zip4jUtil {
      * @return 压缩后的文件
      * @throws IOException 异常
      */
-    public File encryptCompressFiles( List<File> filesToAdd, String password,String fileName)
+    public static File encryptCompressFiles( List<File> filesToAdd, String password,String fileName)
             throws IOException {
         File outputZipFile = File.createTempFile(fileName,".zip");
         ZipParameters zipParameters = buildZipParameters(password);
@@ -54,7 +54,7 @@ public class Zip4jUtil {
         return null;
     }
 
-    private ZipParameters buildZipParameters(String password) {
+    private static ZipParameters buildZipParameters(String password) {
         ZipParameters zipParameters = new ZipParameters();
         zipParameters.setCompressionMethod(CompressionMethod.DEFLATE);
         zipParameters.setAesKeyStrength(AesKeyStrength.KEY_STRENGTH_256);
@@ -65,7 +65,7 @@ public class Zip4jUtil {
         return zipParameters;
     }
 
-    private ZipOutputStream initializeZipOutputStream(File outputZipFile, String password)
+    private static ZipOutputStream initializeZipOutputStream(File outputZipFile, String password)
             throws IOException {
 
         FileOutputStream fos = new FileOutputStream(outputZipFile);
