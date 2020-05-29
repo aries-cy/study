@@ -15,6 +15,11 @@ spring:
     suffix: .html
     cache: false
 
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
 
 server:
   port: 8080
