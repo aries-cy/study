@@ -32,6 +32,9 @@ mybatis:
 
 whitePaths: /user/login;/;/favicon.ico;/index.html;/static/index.html;/user/addUser
 
+#邮件，邮件需要设置什么第三端登陆协议
 email:
-  username: 嘿嘿嘿
-  password: aaa
+  username:
+  password:
+  mailIp: smtp.exmail.qq.com
+  mailPort: 465
