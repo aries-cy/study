@@ -31,3 +31,7 @@ mybatis:
   mapper-locations: classpath:xml/*.xml
 
 whitePaths: /user/login;/;/favicon.ico;/index.html;/static/index.html;/user/addUser
+
+email:
+  username: 嘿嘿嘿
+  password: aaa
