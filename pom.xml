@@ -202,6 +202,11 @@
             <version>3.4.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.4.0</version>
+        </dependency>
 
     </dependencies>
 
