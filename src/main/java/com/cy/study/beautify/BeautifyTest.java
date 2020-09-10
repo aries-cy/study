@@ -17,7 +17,9 @@ public class BeautifyTest {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyConfiguration.class);
 
         Map<String, PayService> map = context.getBeansOfType(PayService.class);
-
+        map.get("WeChat").execute();
+        map.get("Alipay").execute();
+        System.out.println("============================");
         PayService weChatService = (PayService) context.getBean("WeChat");
         PayService alipayService = (PayService) context.getBean("Alipay");
         weChatService.execute();
