@@ -1,29 +1,72 @@
 package com.cy.study.kafka;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-
-import java.util.Properties;
+import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 
 /**
  * 生产者
  *
  * @author cy
  */
+@Component
 public class KafkaMyProducer {
 
-    public static void main(String[] args) {
-        Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");
-        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    private static Logger log = LoggerFactory.getLogger(KafkaMyProducer.class);
 
-        Producer<String, String> producer = new KafkaProducer<>(props);
-        for (int i = 0; i < 100; i++){
-            producer.send(new ProducerRecord<String, String>("test", Integer.toString(i), Integer.toString(i)));
-        }
-        System.out.println("发送消息完成");
-        producer.close();
+    public static final String TOPIC_GROUP1 = "topic.group1";
+
+    public static final String TOPIC_GROUP2 = "topic.group2";
+
+
+    public static final String TOPIC_TEST = "topic.test";
+
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
+
+
+    public void send(String topic,String partition, Object obj){
+        String obj2String = JSONObject.toJSONString(obj);
+        log.info("准备发送消息为：{}", obj2String);
+        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic,partition, obj);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                //发送失败的处理
+                log.info(TOPIC_TEST + " - 生产者 发送消息失败：" + throwable.getMessage());
+            }
+
+            @Override
+            public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
+                //成功的处理
+                log.info(TOPIC_TEST + " - 生产者 发送消息成功：" + stringObjectSendResult.toString());
+            }
+        });
+    }
+
+    public void send(Object obj) {
+        String obj2String = JSONObject.toJSONString(obj);
+        log.info("准备发送消息为：{}", obj2String);
+        //发送消息
+        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(TOPIC_TEST, obj);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                //发送失败的处理
+                log.info(TOPIC_TEST + " - 生产者 发送消息失败：" + throwable.getMessage());
+            }
+
+            @Override
+            public void onSuccess(SendResult<String, Object> stringObjectSendResult) {
+                //成功的处理
+                log.info(TOPIC_TEST + " - 生产者 发送消息成功：" + stringObjectSendResult.toString());
+            }
+        });
     }
 }
