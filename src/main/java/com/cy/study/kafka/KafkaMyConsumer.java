@@ -33,7 +33,7 @@ public class KafkaMyConsumer {
     @KafkaListener(topicPartitions =
             { @TopicPartition(topic = "testTopic",
                     partitions = { "0" },
-                    partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0"))
+                    partitionOffsets = @PartitionOffset(partition = "1", initialOffset = "0"))
             })
     public void consumer(ConsumerRecord consumerRecord){
         Optional<Object> kafkaMassage = Optional.ofNullable(consumerRecord.value());
