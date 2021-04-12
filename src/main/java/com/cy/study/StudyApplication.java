@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 启动类
  *
@@ -28,7 +31,7 @@ public class StudyApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(StudyApplication.class, args);
-        LOGGER.info("启动成功！");
+        LOGGER.info("==============启动成功！===============");
     }
 
 
