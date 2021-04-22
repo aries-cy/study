@@ -22,12 +22,12 @@ public class StudyApplication{
     private final static Logger LOGGER = LoggerFactory.getLogger(StudyApplication.class);
 
 
-    @Bean
-    public FilterRegistrationBean webFilter(){
-        FilterRegistrationBean filter = new FilterRegistrationBean();
-        filter.setFilter(new UserDelegateFilter());
-        return filter;
-    }
+//    @Bean
+//    public FilterRegistrationBean webFilter(){
+//        FilterRegistrationBean filter = new FilterRegistrationBean();
+//        filter.setFilter(new UserDelegateFilter());
+//        return filter;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(StudyApplication.class, args);
